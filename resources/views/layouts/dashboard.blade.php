@@ -12,6 +12,11 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    
+    <!-- include summernote css/js -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -38,9 +43,18 @@
                         <a href="{{ route('categories.index') }}" class="nav-link px-0 align-middle {{ request()->routeIs('categories.*') ? 'active' : '' }}">
                         <i class="fs-4 bi-grid"></i> <span class="ms-2 d-none d-sm-inline">Categorias</span></a>
                     </li>
+                    
                     <li class="nav-item">
-                        <a href="#" class="nav-link px-0 align-middle">
+                        <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
                             <i class="fs-4 bi-files"></i> <span class="ms-2 d-none d-sm-inline">Paginas</span> </a>
+                        <ul class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+                            <li class="w-100">
+                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Home</span></a>
+                            </li>
+                            <li>
+                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Sobre nosotros</span></a>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
                 <hr>

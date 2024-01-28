@@ -19,6 +19,7 @@
 .sidebar {
   .nav-link {
     color: #e7e7e7;
+
     &:hover {
       color: #fff;
     }
@@ -34,5 +35,50 @@
     align-items: center;
     padding-left: 8px !important;
     padding-right: 8px !important;
+  }
+}
+
+.note-editor .dropdown-toggle::after {
+  all: unset;
+}
+
+.note-editor .note-dropdown-menu {
+  box-sizing: content-box;
+}
+
+.note-editor .note-modal-footer {
+  box-sizing: content-box;
+}
+
+[data-value="blockquote"],
+[data-value="pre"] {
+  display: none;
+}
+
+.card-img-top {
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  object-fit: cover;
+}
+
+.banner {
+  height: 400px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: rgba(#000000, .7);
+  background-blend-mode: darken;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+#app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  main {
+    flex-grow: 1;
   }
 }

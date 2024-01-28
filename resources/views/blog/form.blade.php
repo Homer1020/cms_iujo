@@ -47,18 +47,18 @@
   </div>
 </div>
 <div class="mb-3">
-  <label class="form-label" for="excerpt">Extracto</label>
-  <textarea name="excerpt" id="excerpt" rows="5" class="form-control @error('excerpt') is-invalid @enderror" placeholder="Ingrese el extracto">{{ old('excerpt', $post->excerpt) }}</textarea>
-  @error('excerpt')
+  <label class="form-label" for="content">Contenido</label>
+  <textarea name="content" id="content" rows="7" class="form-control @error('content') is-invalid @enderror" placeholder="Ingrese el contenido">{{ old('content', $post->content) }}</textarea>
+  @error('content')
     <span class="invalid-feedback" role="alert">
       <strong>{{ $message }}</strong>
     </span>
   @enderror
 </div>
 <div class="mb-3">
-  <label class="form-label" for="content">Contenido</label>
-  <textarea name="content" id="content" rows="7" class="form-control @error('content') is-invalid @enderror" placeholder="Ingrese el contenido">{{ old('content', $post->content) }}</textarea>
-  @error('content')
+  <label class="form-label" for="excerpt">Extracto</label>
+  <textarea name="excerpt" id="excerpt" rows="3" class="form-control @error('excerpt') is-invalid @enderror" placeholder="Ingrese el extracto">{{ old('excerpt', $post->excerpt) }}</textarea>
+  @error('excerpt')
     <span class="invalid-feedback" role="alert">
       <strong>{{ $message }}</strong>
     </span>

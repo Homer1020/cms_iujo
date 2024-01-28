@@ -9,7 +9,8 @@
     <div class="row">
       <div class="col-md-12">
         <div class="card card-body">
-          <form action="{{ route('categories.store') }}" method="POST">
+          <form action="{{ route('categories.update', $category) }}" method="POST">
+            @method('PUT')
             @csrf
             @include('categories.form')
             <input type="submit" value="Guardar" class="btn btn-success">

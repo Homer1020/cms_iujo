@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Storage;
 class PostController extends Controller
 {
     public function publicIndex() {
-        $posts = Post::all();
+        $posts = Post::orderBy('created_at', 'DESC')->paginate(6);
         return view('blog.index', compact('posts'));
     }
 
@@ -21,7 +21,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::with('category')->get();
+        $posts = Post::with('category')->orderBy('created_at', 'DESC')->paginate(5);
         return view('blog.dashboard', compact('posts'));
     }
 
@@ -43,9 +43,9 @@ class PostController extends Controller
             'title'     => 'required|string',
             'content'   => 'required|string|min:3',
             'excerpt'   => 'required|string|min:3',
-            'slug'      => 'required|string',
+            'slug'      => 'required|string|unique:posts,slug',
             'thumbnail' => 'required|image|mimes:png,jpg,jpeg',
-            'category'  => 'integer',
+            'category'  => 'required|integer',
         ]);
 
         $post = new Post();
@@ -76,7 +76,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return view('blog.show', compact('post'));
     }
 
     /**
@@ -97,9 +97,9 @@ class PostController extends Controller
             'title'     => 'required|string',
             'content'   => 'required|string|min:3',
             'excerpt'   => 'required|string|min:3',
-            'slug'      => 'required|string',
+            'slug'      => 'required|string|unique:posts,slug,' . $post->id,
             'thumbnail' => 'image|mimes:png,jpg,jpeg',
-            'category'  => 'integer',
+            'category'  => 'required|integer',
         ]);
 
         

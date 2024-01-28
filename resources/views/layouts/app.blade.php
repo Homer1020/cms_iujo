@@ -33,6 +33,9 @@
                         <li class="nav-item">
                             <a href="{{ route('blog.publicIndex') }}" class="nav-link">Blog</a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('about') }}" class="nav-link">Sobre nosotros</a>
+                        </li>
                         @auth
                             <li class="nav-item">
                                 <a href="{{ route('blog.index') }}" class="nav-link">Dashboard</a>
@@ -82,6 +85,12 @@
         <main class="py-4">
             @yield('content')
         </main>
+
+        <footer class="py-4 border-top">
+            <div class="container">
+                <p class="m-0 text-muted text-center">Todos los derechos reservados a Guillermo Sulbaran y Homer Moncayo</p>
+            </div>
+        </footer>
     </div>
 </body>
 </html>

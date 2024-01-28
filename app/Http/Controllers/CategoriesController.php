@@ -12,7 +12,7 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::orderBy('id', 'DESC')->paginate(5);
         return view('categories.index', compact('categories'));
     }
 
@@ -29,7 +29,17 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $payload = $request->validate([
+            'category'  => 'string|required',
+            'slug'      => 'string|required'
+        ]);
+
+        Category::create([
+            'category'  => $payload['category'],
+            'slug'      => $payload['slug']
+        ]);
+
+        return response()->redirectToRoute('categories.index')->with('info', 'Se agrego la categoría correctamente');
     }
 
     /**
@@ -45,22 +55,33 @@ class CategoriesController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('categories.create', compact('category'));
+        return view('categories.edit', compact('category'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Category $category)
     {
-        //
+        $payload = $request->validate([
+            'category'  => 'string|required',
+            'slug'      => 'string|required'
+        ]);
+
+        $category->update([
+            'category'  => $payload['category'],
+            'slug'      => $payload['slug']
+        ]);
+
+        return response()->redirectToRoute('categories.index')->with('info', 'Se actualizo la categoría correctamente');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return response()->redirectToRoute('categories.index')->with('info', 'Se elimino la categoría correctamente');
     }
 }

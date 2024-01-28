@@ -57,6 +57,8 @@
               @endforelse
             </tbody>
           </table>
+
+          {{ $posts->links('vendor.pagination.bootstrap-5') }}
         </div>
       </div>
     </div>
