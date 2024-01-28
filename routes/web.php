@@ -1,18 +1,23 @@
 <?php
 
+use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+Auth::routes();
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::prefix('dashboard')->group(function() {
+    Route::resource('blog', PostController::class)
+        ->parameter('blog', 'post')
+        ->except([
+            'show'
+        ]);
+});
+Route::get('blog', [PostController::class, 'publicIndex'])->name('blog.publicIndex');
+Route::get('blog/{post}', [PostController::class, 'show'])->name('blog.show');
+
+Route::prefix('dashboard')->group(function() {
+    Route::resource('categories', CategoriesController::class);
 });
